@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card" style="width: 18rem;">
+{% load static %}
+<img src="{% static cust_record.picture_URL %}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{cust_record}}</h5>
+    <p class="card-text">Hobby : {{cust_record.hobby}}</p>
+    <p>Country : {{cust_record.country}}</p>
+     <p>City : {{cust_record.city}}</p>
+      <p>Phone : {{cust_record.phone}}</p>
+    <a href="{%url 'home'%}" class="btn btn-primary">Back</a>
+      <a href="{%url 'delete' cust_record.id %}" class="btn btn-danger">Delete</a>
+      <a href="{%url 'update_record' cust_record.id %}" class="btn btn-secondary">Update</a>
+  </div>
+</div>
+{%endblock%}
