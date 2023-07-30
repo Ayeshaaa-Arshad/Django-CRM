@@ -5,7 +5,7 @@ class Record(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     first_name=models.CharField(max_length=12)
     last_name=models.CharField(max_length=12)
-    picture_URL=models.CharField(max_length=100)
+    picture_URL = models.ImageField(upload_to='images')
     city=models.CharField(max_length=10)
     phone=models.CharField(max_length=10)
     country=models.CharField(max_length=10)
