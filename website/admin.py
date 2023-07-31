@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Record
+from website.models import Record
 # Register your models here.
 
 admin.site.register(Record)
