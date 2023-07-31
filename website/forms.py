@@ -31,17 +31,22 @@ class SignUpForm(UserCreationForm):
 
 
 class RecordForm(forms.ModelForm):
-	first_name = forms.CharField( widget=forms.widgets.TextInput(attrs={"placeholder":"First Name", "class":"form-control"}), label="")
-	last_name = forms.CharField( widget=forms.widgets.TextInput(attrs={"placeholder":"Last Name", "class":"form-control"}), label="")
-	picture_URL = forms.ImageField( widget=forms.widgets.FileInput(attrs={"class":"form-control-file"}), label="Upload Image")
-	phone = forms.CharField( widget=forms.widgets.TextInput(attrs={"placeholder":"Phone", "class":"form-control"}), label="")
-	country = forms.CharField(widget=forms.widgets.TextInput(attrs={"placeholder":"Country", "class":"form-control"}), label="")
-	city = forms.CharField( widget=forms.widgets.TextInput(attrs={"placeholder":"City", "class":"form-control"}), label="")
-	hobby = forms.CharField( widget=forms.widgets.TextInput(attrs={"placeholder":"hobby", "class":"form-control"}), label="")
+    first_name = forms.CharField(widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class": "form-control"}), label="")
+    last_name = forms.CharField(widget=forms.widgets.TextInput(attrs={"placeholder": "Last Name", "class": "form-control"}), label="")
+    picture_URL = forms.ImageField(widget=forms.widgets.FileInput(attrs={"class": "form-control-file"}), label="Upload Image")
+    phone = forms.CharField(widget=forms.widgets.TextInput(attrs={"placeholder": "Phone", "class": "form-control"}), label="")
+    country = forms.CharField(widget=forms.widgets.TextInput(attrs={"placeholder": "Country", "class": "form-control"}), label="")
+    city = forms.CharField(widget=forms.widgets.TextInput(attrs={"placeholder": "City", "class": "form-control"}), label="")
+    hobby = forms.CharField(widget=forms.widgets.TextInput(attrs={"placeholder": "Hobby", "class": "form-control"}), label="")
 
+    class Meta:
+        model = Record
+        exclude = ("user",)
 
-	class Meta:
-		model = Record
-		exclude = ("user",)
-
+    @classmethod
+    def get_record(cls, pk):
+        try:
+            return cls.Meta.model.objects.get(pk=pk)
+        except cls.Meta.model.DoesNotExist:
+            return None
 

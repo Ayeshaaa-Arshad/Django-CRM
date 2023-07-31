@@ -49,14 +49,9 @@ class RegisterView(View):
 
 class RecordView(LoginRequiredMixin, View):
     template_name='record.html'
-    @classmethod
-    def get_record(cls,pk):
-        try:
-            return Record.objects.get(id=pk)
-        except:
-            return None
+
     def get(self,request,pk):
-        rec= RecordView.get_record(pk)
+        rec= RecordForm.get_record(pk)
         if rec:
             return render(request, self.template_name, {'user_record': rec})
         else:
@@ -105,7 +100,7 @@ class AddRecordView(LoginRequiredMixin,View):
 class UpdateRecordView(LoginRequiredMixin,View):
     template_name='update_record.html'
     def post(self,request,pk):
-        current_record=RecordView.get_record(pk)
+        current_record=RecordForm.get_record(pk)
         if current_record:
             form = RecordForm(request.POST or None, request.FILES or None, instance=current_record)
             if form.is_valid():
@@ -118,7 +113,7 @@ class UpdateRecordView(LoginRequiredMixin,View):
             return redirect('home')
 
     def get(self,request,pk):
-        current_record = RecordView.get_record(pk)
+        current_record = RecordForm.get_record(pk)
         if current_record:
             form = RecordForm(request.POST or None, request.FILES or None, instance=current_record)
             return render(request, self.template_name, {'form': form})
