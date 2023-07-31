@@ -45,4 +45,3 @@ class RecordForm(forms.ModelForm):
 		exclude = ("user",)
 
 
-
